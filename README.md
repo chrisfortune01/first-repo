@@ -8,4 +8,4 @@ Familiarizing with GitHud
 
 Feeling motivated for the journey ahead!
 
-Learning progess
+Learning progess, it only gets better.
