@@ -4,7 +4,7 @@ Starting my GitHub journey officially
 
 ## Update
 
-Familiarizing with GitHud
+Familiarizing with GitHub
 
 Feeling motivated for the journey ahead!
 
