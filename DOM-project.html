@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Project</title>
+    <style>
+        .subscribe-button {
+            border: none;
+            background-color: black;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        .is-subscribed {
+         border: none;
+            background-color:rgb(240,240,240);
+            /* color: black; */
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;   
+        }
+    </style>
+</head>
+<body>
+    <p>YouTube Subscribe Button</p>
+    <button onclick="
+        toSubscribe()
+    " class="js-button subscribe-button">Subscribe</button>
+
+    <p>Rock Paper Scissors</p>
+    <a href="Rock-paper-scissors/Rock-paper-scissors.html">Click here</a>
+
+    <p>Amazon Shipping Calculator</p>
+    <p>Orders under $40 = +$10 shipping</p>
+    <p>Orders over $40 = FREE shipping</p>
+    <input type="number" 
+        class="cost" 
+        placeholder="Input item cost"
+        onkeydown="calculateWithEnterKey()">
+    <button onclick="totalAmount()">Calculate</button>
+    <p class="result"></p>
+    <script>
+        function toSubscribe() {
+            const buttonElement = document.querySelector('.js-button');
+            if (buttonElement.innerText === 'Subscribe'){
+                buttonElement.innerText = 'Subscribed';
+                buttonElement.classList.replace('subscribe-button','is-subscribed')
+            } else {
+                buttonElement.innerText = 'Subscribe';
+                buttonElement.classList.replace('is-subscribed','subscribe-button')
+            }
+        }
+        function calculateWithEnterKey() {
+            if (event.key === 'Enter') {
+                totalAmount()
+            }
+        }
+        function totalAmount() {
+            let amount = Number(document.querySelector('.cost').value);
+            if (amount < 40 ) {
+                amount += 10;
+            }
+            document.querySelector('.result').innerHTML = `$${amount}`;
+        }
+    </script>
+</body>
+</html>
