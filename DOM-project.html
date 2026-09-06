@@ -5,23 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM Project</title>
     <style>
+        body {
+            font-family: Arial;
+        }
         .subscribe-button {
             border: none;
             background-color: black;
             color: white;
             padding: 12px;
+            margin-bottom: 30px;
             font-weight: bold;
+            font-style: italic;
             border-radius: 30px;
             cursor: pointer;
+
         }
         .is-subscribed {
-         border: none;
-            background-color:rgb(240,240,240);
-            /* color: black; */
-            padding: 12px;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;   
+            background-color:rgb(240, 240, 240);
+            border: 2px solid gray;
+            color: black;
+        }
+        .css-cost {
+            font-size: 15px;
+            padding: 10px;
+        }
+        .calculate {
+            border: none;
+            font-size: 15px;
+            padding: 12px 15px;
+            background-color: green;
+            color: white;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -38,20 +52,22 @@
     <p>Orders under $40 = +$10 shipping</p>
     <p>Orders over $40 = FREE shipping</p>
     <input type="number" 
-        class="cost" 
-        placeholder="Input item cost"
+        class="js-cost css-cost" 
+        placeholder="Input Item Cost"
         onkeydown="calculateWithEnterKey()">
-    <button onclick="totalAmount()">Calculate</button>
+    <button onclick="totalAmount()" class="calculate">Calculate</button>
     <p class="result"></p>
     <script>
         function toSubscribe() {
             const buttonElement = document.querySelector('.js-button');
             if (buttonElement.innerText === 'Subscribe'){
                 buttonElement.innerText = 'Subscribed';
-                buttonElement.classList.replace('subscribe-button','is-subscribed')
+                buttonElement.classList.add('is-subscribed');
+                // buttonElement.classList.replace('subscribe-button','is-subscribed')
             } else {
                 buttonElement.innerText = 'Subscribe';
-                buttonElement.classList.replace('is-subscribed','subscribe-button')
+                buttonElement.classList.remove('is-subscribed');
+                // buttonElement.classList.replace('is-subscribed','subscribe-button')
             }
         }
         function calculateWithEnterKey() {
@@ -60,7 +76,7 @@
             }
         }
         function totalAmount() {
-            let amount = Number(document.querySelector('.cost').value);
+            let amount = Number(document.querySelector('.js-cost').value);
             if (amount < 40 ) {
                 amount += 10;
             }
