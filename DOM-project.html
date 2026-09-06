@@ -37,6 +37,9 @@
             color: white;
             cursor: pointer;
         }
+        .error-message {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -54,7 +57,8 @@
     <input type="number" 
         class="js-cost css-cost" 
         placeholder="Input Item Cost"
-        onkeydown="calculateWithEnterKey()">
+        onkeydown="calculateWithEnterKey()"
+    >
     <button onclick="totalAmount()" class="calculate">Calculate</button>
     <p class="result"></p>
     <script>
@@ -77,10 +81,18 @@
         }
         function totalAmount() {
             let amount = Number(document.querySelector('.js-cost').value);
-            if (amount < 40 ) {
-                amount += 10;
+            if (amount < 0) {
+                document.querySelector('.result').classList.add('error-message')
+                document.querySelector('.result').innerHTML = 'Error: cost cannot be less than $0';
+            } else if (amount === 0 || amount > 40) {
+                document.querySelector('.result').classList.remove('error-message')
+                document.querySelector('.result').innerHTML = `$${amount}`;
+            } else if (0 <= amount <= 40 ) {
+                amount = Math.round(amount * 100 + 1000) / 100
+                // amount += 10;
+                document.querySelector('.result').classList.remove('error-message')
+                document.querySelector('.result').innerHTML = `$${amount}`;
             }
-            document.querySelector('.result').innerHTML = `$${amount}`;
         }
     </script>
 </body>
